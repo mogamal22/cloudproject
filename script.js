@@ -25,23 +25,11 @@ document.addEventListener('DOMContentLoaded', function() {
         // Update the output
         output.textContent = `${randomMessage} You've clicked ${clickCount} time${clickCount > 1 ? 's' : ''}!`;
         
-        // Add a fade-in animation
-        output.style.opacity = '0';
-        setTimeout(() => {
-            output.style.transition = 'opacity 0.5s ease-in';
-            output.style.opacity = '1';
-        }, 10);
-    });
-
-    // Add hover effect to the header
-    const header = document.querySelector('header h1');
-    header.addEventListener('mouseenter', function() {
-        this.style.transform = 'scale(1.05)';
-        this.style.transition = 'transform 0.3s ease';
-    });
-
-    header.addEventListener('mouseleave', function() {
-        this.style.transform = 'scale(1)';
+        // Add fade-in animation using CSS class
+        output.classList.remove('fade-in');
+        // Force reflow to restart animation
+        void output.offsetWidth;
+        output.classList.add('fade-in');
     });
 
     console.log('Cloud Project JavaScript loaded successfully!');
